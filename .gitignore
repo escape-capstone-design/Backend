@@ -1,0 +1,15 @@
+# Environments
+.env
+.venv
+env
+venv
+.idea
+
+# vscode
+.vscode
+
+# macOS
+.DS_Store
+
+# test
+test_main.http
