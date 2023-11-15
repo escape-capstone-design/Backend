@@ -13,3 +13,6 @@ venv
 
 # test
 test_main.http
+
+__pycache__/
+*.pyc
