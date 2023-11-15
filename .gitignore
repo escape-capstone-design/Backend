@@ -5,6 +5,10 @@ env
 venv
 .idea
 
+# pycache 삭제
+__pycache__/
+*.pyc
+
 # vscode
 .vscode
 
@@ -14,5 +18,3 @@ venv
 # test
 test_main.http
 
-__pycache__/
-*.pyc
