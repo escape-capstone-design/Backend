@@ -8,7 +8,7 @@ app = FastAPI()
 
 """
 request 질문, 모범 답안, 학생 답안
-response 피드
+response 피드백
 """
 @app.post("/feedback")
 async def feedback(data: dict):
