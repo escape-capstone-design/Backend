@@ -11,7 +11,7 @@ def predict_grade(request: GetGradeRequest):
     model.eval()
 
     # 두 문장을 모델로 임베딩
-    embeddings = model.encode([request.correct_answer, request.answer], convert_to_tensor=True, device='cpu')
+    embeddings = model.encode([request.answer, request.student_answer], convert_to_tensor=True, device='cpu')
 
     # 코사인 유사도 계산
     return util.pytorch_cos_sim(embeddings[0], embeddings[1])[0][0].item()
