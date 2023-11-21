@@ -8,7 +8,7 @@ from schema.grade_schema import GetGradeRequest
 # 채점 결과
 class TestResult(Enum):
     CORRECT = "정답 :)"
-    NEEDS_CONFIRMATION = "해당 문항에 대한 정답 여부를 확인하기 어려워, 추가적인 확인이 필요합니다. 필요에 따라 답안을 다시 작성하실 수도 있습니다 :) "
+    NEEDS_CONFIRMATION = "해당 문항에 대한 정답 여부를 확인하기 어려워, 추가적인 확인이 필요합니다. 피드백을 참고하여 답안을 다시 작성해보세요 :) "
     WRONG = "오답 :("
 
 
