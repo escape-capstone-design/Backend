@@ -1,0 +1,14 @@
+--index-url https://download.pytorch.org/whl/cpu
+torch
+--index-url https://download.pytorch.org/whl/cpu
+torchvision
+--index-url https://download.pytorch.org/whl/cpu
+torchaudio
+
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+
+openai
+sentence_transformers
