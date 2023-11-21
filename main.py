@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 
 from service.grade import *
-from service.feedback import get_feedback
+from service.feedback import *
 
 app = FastAPI()
 
@@ -20,13 +20,10 @@ request 문제, 모범 답안, 학생 답안
 response 피드백 
 """
 @app.post("/feedback")
-async def feedback(data: dict):
+async def feedback(request: GetFeedbackRequest):
     try:
-        question = data.get("question")
-        answer = data.get("answer")
-        student_answer = data.get("student_answer")
-        
-        feedback = get_feedback(question, answer, student_answer)
+
+        feedback = get_feedback(request)
         return {"feedback": feedback}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
