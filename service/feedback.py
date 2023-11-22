@@ -11,7 +11,8 @@ MODEL = "gpt-3.5-turbo"
 
 def get_feedback(request :GetFeedbackRequest):
     
-    USER_INPUT = f"문제: {request.question}, \n\n 모범 답안: {request.answer}, \n\n학생 답안: {request.student_answer} \n\n채점 결과: {request.grading_result}"
+    USER_INPUT = f"문제: {request.question}, \n\n 모범 답안: {request.answer},"
+    USER_INPUT += f"\n\n학생 답안: {request.student_answer} \n\n채점 결과: {request.grading_result}"
     USER_INPUT+= "\n\n 너는 선생님이고 학생 답안에 대해 피드백을 하려고 해.\
             문제 수준에 맞는 학생에게 제공하는 말투로,\
             중요한 내용만 포함해서,\
