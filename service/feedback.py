@@ -11,13 +11,13 @@ MODEL = "gpt-3.5-turbo"
 
 def get_feedback(request :GetFeedbackRequest):
     
-    USER_INPUT = f"문제: {request.question}, \n\n 모범 답안: {request.answer}, \n\n학생 답안: {request.student_answer}"
-    USER_INPUT+= "\n\n 너는 선생님이고 채점을 하려고 해.\
+    USER_INPUT = f"문제: {request.question}, \n\n 모범 답안: {request.answer}, \n\n학생 답안: {request.student_answer} \n\n채점 결과: {request.grading_result}"
+    USER_INPUT+= "\n\n 너는 선생님이고 학생 답안에 대해 피드백을 하려고 해.\
             문제 수준에 맞는 학생에게 제공하는 말투로,\
             중요한 내용만 포함해서,\
             200자 이내로,\
-            학생이 이해하기 쉽게, \
-            문제와 모범답안을 기반으로 학생 답안에 대한 피드백만 제공해줘!"
+            학생이 이해하기 쉽도록, \
+            문제,모범답안, 채점 결과를 기반으로 학생 답안에 대한 피드백을 제공해줘!"
 
     #시작 시간 기록
     start_time = time.time()  
