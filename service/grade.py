@@ -24,7 +24,6 @@ def predict_grade(request: GetGradeRequest):
     # 코사인 유사도 계산
     cosine_similarity = util.pytorch_cos_sim(embeddings[0], embeddings[1])[0][0].item()
 
-    # todo: 채점 기준 수정
     if cosine_similarity >= 0.7:
         result = TestResult.CORRECT.value
     elif cosine_similarity <= 0.5:
@@ -32,4 +31,4 @@ def predict_grade(request: GetGradeRequest):
     else:
         result = TestResult.NEEDS_CONFIRMATION.value
 
-    return result
+    return '\n'.join([str(result), str(cosine_similarity)])
