@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException
 
-from service.grade import *
-from service.feedback import *
+from schema.feedback_schema import GetFeedbackRequest
+from schema.grade_schema import GetGradeRequest
+from service.feedback import get_feedback
+from service.grade import predict_grade
 
 app = FastAPI()
 
@@ -12,7 +14,10 @@ response 채점 결과
 """
 @app.post("/grade")
 async def get_grade(request: GetGradeRequest):
-    return predict_grade(request)
+    try:
+        return predict_grade(request)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 """

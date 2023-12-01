@@ -15,7 +15,7 @@ class TestResult(Enum):
 def predict_grade(request: GetGradeRequest):
     # 파인 튜닝 모델 불러오기
     device = torch.device('cpu')
-    model = torch.load('./model/model.pt', map_location=device)
+    model = torch.load('/app/model/model.pt', map_location=device)
     model.eval()
 
     # 두 문장을 모델로 임베딩
