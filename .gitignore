@@ -18,5 +18,5 @@ __pycache__/
 # test
 test_main.http
 
-# model
-model
+# git lfs
+.gitattributes
