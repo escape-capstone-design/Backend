@@ -1,14 +1,7 @@
---index-url https://download.pytorch.org/whl/cpu
-torch
---index-url https://download.pytorch.org/whl/cpu
-torchvision
---index-url https://download.pytorch.org/whl/cpu
-torchaudio
-
 fastapi
+pydantic==2.0.3
 uvicorn[standard]
-pydantic
 python-dotenv
-
-openai
+openai==0.28
 sentence_transformers
+Pillow
