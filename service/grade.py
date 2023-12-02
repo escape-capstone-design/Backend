@@ -5,12 +5,18 @@ from sentence_transformers import util
 from schema.grade_schema import GetGradeRequest
 
 
+def validate_request(request: GetGradeRequest):
+    if request.answer is None or request.answer.strip() == '':
+        return False
+    if request.student_answer is None or request.student_answer.strip() == '':
+        return False
+    return True
+
 # 채점 결과
 class TestResult(Enum):
     CORRECT = "정답 :)"
     NEEDS_CONFIRMATION = "해당 문항에 대한 정답 여부를 확인하기 어려워, 추가적인 확인이 필요합니다. 피드백을 참고하여 답안을 다시 작성해보세요 :) "
     WRONG = "오답 :("
-
 
 def predict_grade(request: GetGradeRequest):
     # 파인 튜닝 모델 불러오기
