@@ -1,9 +1,7 @@
 from fastapi import FastAPI, HTTPException
 
-from schema.feedback_schema import GetFeedbackRequest
-from schema.grade_schema import GetGradeRequest
-from service.feedback import get_feedback
-from service.grade import predict_grade
+from service.feedback import *
+from service.grade import *
 
 app = FastAPI()
 
@@ -14,6 +12,9 @@ response 채점 결과
 """
 @app.post("/grade")
 async def get_grade(request: GetGradeRequest):
+    if not validate_request(request):
+        raise HTTPException(status_code=400, detail='빈 값은 허용되지 않습니다.')
+
     try:
         return predict_grade(request)
     except Exception as e:
@@ -27,7 +28,6 @@ response 피드백
 @app.post("/feedback")
 async def feedback(request: GetFeedbackRequest):
     try:
-
         feedback = get_feedback(request)
         return {"feedback": feedback}
     except Exception as e:
