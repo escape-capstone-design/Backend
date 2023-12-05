@@ -7,7 +7,7 @@ from schema.feedback_schema import GetFeedbackRequest
 # .env 파일 로드
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_KEY")
-MODEL = "gpt-3.5-turbo"
+MODEL = "gpt-4"
 
 
 def get_feedback(request: GetFeedbackRequest):
@@ -43,7 +43,8 @@ def get_feedback(request: GetFeedbackRequest):
 
 # 피드백 검증
 def verify_feedback(question, feedback):
-    USER_INPUT = "모범답안과 학생답안을 비교했을 때, 적절한 피드백이야? 단답으로 네,아니오 둘 중 하나로 대답해줘"
+    USER_INPUT = "모범답안과 학생답안을 비교했을 때,그리고 문제와 비교했을 때 적절한 피드백인가요?\
+        그리고 피드백 내용에 모순이 없나요? 단답으로 네,아니오 둘 중 하나로 대답해주세요."
     response = get_gpt_response_multiple_inputs(question, feedback, USER_INPUT)
     print(response)
     if response and response.startswith('네'):
