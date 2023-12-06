@@ -2,15 +2,8 @@ import torch
 from enum import Enum
 
 from sentence_transformers import util
-from schema.grade_schema import GetGradeRequest
+from schema.grade_schema import PredictGradeRequest, PredictGradeResponse
 
-
-def validate_request(request: GetGradeRequest):
-    if request.answer is None or request.answer.strip() == '':
-        return False
-    if request.student_answer is None or request.student_answer.strip() == '':
-        return False
-    return True
 
 # 채점 결과
 class TestResult(Enum):
@@ -18,7 +11,8 @@ class TestResult(Enum):
     NEEDS_CONFIRMATION = "해당 문항에 대한 정답 여부를 확인하기 어려워, 추가적인 확인이 필요합니다. 피드백을 참고하여 답안을 다시 작성해보세요 :) "
     WRONG = "오답 :("
 
-def predict_grade(request: GetGradeRequest):
+
+def predict_grade(request: PredictGradeRequest):
     # 파인 튜닝 모델 불러오기
     device = torch.device('cpu')
     model = torch.load('./model/model.pt', map_location=device)
@@ -29,6 +23,7 @@ def predict_grade(request: GetGradeRequest):
 
     # 코사인 유사도 계산
     cosine_similarity = util.pytorch_cos_sim(embeddings[0], embeddings[1])[0][0].item()
+    score = round(cosine_similarity, 2) * 100
 
     if cosine_similarity >= 0.7:
         result = TestResult.CORRECT.value
@@ -37,4 +32,4 @@ def predict_grade(request: GetGradeRequest):
     else:
         result = TestResult.NEEDS_CONFIRMATION.value
 
-    return '\n'.join([str(result), str(cosine_similarity)])
+    return PredictGradeResponse(result=result, score=score)
