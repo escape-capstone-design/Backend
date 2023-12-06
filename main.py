@@ -11,10 +11,7 @@ request 모범 답안, 학생 답안
 response 채점 결과
 """
 @app.post("/grade")
-async def get_grade(request: GetGradeRequest):
-    if not validate_request(request):
-        raise HTTPException(status_code=400, detail='빈 값은 허용되지 않습니다.')
-
+async def get_grade(request: PredictGradeRequest):
     try:
         return predict_grade(request)
     except Exception as e:
