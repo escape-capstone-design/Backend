@@ -1,7 +1,5 @@
 fastapi
-pydantic==2.0.3
 uvicorn[standard]
 python-dotenv
 openai==0.28
 sentence_transformers
-Pillow
