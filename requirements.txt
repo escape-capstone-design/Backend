@@ -1,5 +1,4 @@
 fastapi
 uvicorn[standard]
-python-dotenv
 openai==0.28
 sentence_transformers
